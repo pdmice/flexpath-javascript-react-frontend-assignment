@@ -13,6 +13,7 @@ function App() {
           Search Through Dataset
         </Link>
       </nav>
+      <hr/>
       
 
       <Routes>
