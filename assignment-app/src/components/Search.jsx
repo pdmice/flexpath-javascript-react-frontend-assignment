@@ -16,14 +16,17 @@ export default function Search() {
     setKeyword(e.target.value)
   }
 
-  
+  const handleSubmit = () => {
+    const queryString = "/api/data/search/?" + category + "&" + keywo
+    fetch("/api/data/search/" + )
+  }
 
   return (
     <>
     {console.log("category state is: ", category)}
     {console.log("keyword is: ", keyword)}
     <div className="container">
-     <form >
+     <form  onSubmit={handleSubmit}>
       <label className="form-label" for="category">Select data point to filter by</label>
       <select 
         className="form-select" 
