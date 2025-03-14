@@ -12,9 +12,11 @@ router.get("/data/search", (req, res, next) => {
     - behaviorClass
   */
 
-  const filterType = req.query.filterType || null;
+  const filterType = req.query.filtertype || null;
   const keyword = req.query.keyword || null;
-
+  console.log("filtertype is: ", filterType)
+  console.log("Keyword is: ", keyword)
+  console.log(req.query)
   let searchType;
   if (filterType) {
     const lower_case = filterType.toLowerCase();
