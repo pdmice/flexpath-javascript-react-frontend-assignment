@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 
-export default function SearchForm() {
+export default function SearchForm( {data, setData} ) {
   const [keyword, setKeyword] = useState();
   const [category, setCategory] = useState("gender");
   const [queryString, setQueryString] = useState(
     "/api/data/search?typefilter=gender&keyword=female"
   );
-  const [data, setData] = useState(null);
 
   const categories = ["gender", "operatingSystem", "model", "behaviorclass"];
-
+  
   //Hitting the submit button will set the queryString, this useEffect will fetch
   //the data and trigger a render whenever that happens
 
@@ -19,7 +18,7 @@ export default function SearchForm() {
         .then((response) => response.json())
         .then((json) => {
           console.log("Json is: ", json);
-          setData(json);
+          setData(json)
         })
         .catch((error) => console.log(error));
       console.log(data);
