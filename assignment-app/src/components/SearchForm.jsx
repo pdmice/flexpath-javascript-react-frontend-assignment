@@ -3,16 +3,31 @@ import React, { useState, useEffect } from "react";
 export default function SearchForm() {
   const [keyword, setKeyword] = useState();
   const [category, setCategory] = useState("gender");
-  const [queryString, setQueryString] = useState("female");
+  const [queryString, setQueryString] = useState(
+    "/api/data/search?typefilter=gender&keyword=female"
+  );
+  const [data, setData] = useState(null);
 
   const categories = ["gender", "operatingSystem", "model", "behaviorclass"];
 
+  //Hitting the submit button will set the queryString, this useEffect will fetch
+  //the data and trigger a render whenever that happens
+
   useEffect(() => {
-    console.log("In useEffect queryString is: ", queryString);
+    async function fetchData(qstring) {
+      await fetch(qstring)
+        .then((response) => response.json())
+        .then((json) => {
+          console.log("Json is: ", json);
+          setData(json);
+        })
+        .catch((error) => console.log(error));
+      console.log(data);
+    }
+    fetchData(queryString);
   }, [queryString]);
 
   const handleCategory = (e) => {
-    console.log(e.target.value);
     setCategory(e.target.value);
   };
 
@@ -23,25 +38,21 @@ export default function SearchForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const query = `/api/data/search/?category=${category}&keyword=${keyword}`;
+    const query = `/api/data/search?filtertype=${category}&keyword=${keyword}`;
     setQueryString(query);
-    console.log("In handleSubmit category is: ", category);
-    console.log("In handleSubmit keyword is: ", keyword);
-    console.log("In handleSubmit query is: ", query);
-    console.log("In handleSubmit queryString is: ", queryString);
   };
 
   return (
     <>
-      {console.log("category state is: ", category)}
-      {console.log("keyword is: ", keyword)}
+      {console.log("Data in return is: ", data)}
+      {console.log("queryString in return is: ", queryString)}
       <div className="container">
         <form
           onSubmit={(e) => {
             handleSubmit(e);
           }}
         >
-          <label className="form-label" for="category">
+          <label className="form-label" htmlFor="category">
             Select data point to filter by
           </label>
           <select
@@ -59,13 +70,14 @@ export default function SearchForm() {
             placeholder="Search by keyword"
             onChange={(e) => handleKeyword(e)}
           ></input>
-          <div class="d-grid gap-2">
+          <div className="d-grid gap-2">
             <button type="submit" className="btn btn-outline-secondary">
               Search
             </button>
           </div>
         </form>
       </div>
+      
     </>
   );
 }
