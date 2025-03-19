@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function SearchForm( {data, setData} ) {
+export default function SearchForm({ data, setData }) {
   const [keyword, setKeyword] = useState();
   const [category, setCategory] = useState("gender");
   const [queryString, setQueryString] = useState(
@@ -8,7 +8,7 @@ export default function SearchForm( {data, setData} ) {
   );
 
   const categories = ["gender", "operatingSystem", "model", "behaviorclass"];
-  
+
   //Hitting the submit button will set the queryString, this useEffect will fetch
   //the data and trigger a render whenever that happens
 
@@ -18,7 +18,7 @@ export default function SearchForm( {data, setData} ) {
         .then((response) => response.json())
         .then((json) => {
           console.log("Json is: ", json);
-          setData(json)
+          setData(json);
         })
         .catch((error) => console.log(error));
       console.log(data);
@@ -43,40 +43,43 @@ export default function SearchForm( {data, setData} ) {
 
   return (
     <>
-      {console.log("Data in return is: ", data)}
       {console.log("queryString in return is: ", queryString)}
       <div className="container">
-        <form
-          onSubmit={(e) => {
-            handleSubmit(e);
-          }}
-        >
-          <label className="form-label" htmlFor="category">
-            Select data point to filter by
-          </label>
-          <select
-            className="form-select"
-            name="category"
-            onChange={(e) => handleCategory(e)}
+        <div className="row-align-items-center gy-5">
+          <form
+            onSubmit={(e) => {
+              handleSubmit(e);
+            }}
           >
-            {categories.map((i) => (
-              <option value={i}>{i}</option>
-            ))}
-          </select>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search by keyword"
-            onChange={(e) => handleKeyword(e)}
-          ></input>
-          <div className="d-grid gap-2">
-            <button type="submit" className="btn btn-outline-secondary">
-              Search
-            </button>
-          </div>
-        </form>
+            <label className="form-label" htmlFor="category">
+              Select data point to filter by
+            </label>
+            <div className="col gx-6">
+              <select
+                className="form-select"
+                name="category"
+                onChange={(e) => handleCategory(e)}
+              >
+                {categories.map((i) => (
+                  <option value={i}>{i}</option>
+                ))}
+              </select>
+            </div>
+
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search by keyword"
+              onChange={(e) => handleKeyword(e)}
+            ></input>
+            <div className="d-grid gap-2">
+              <button type="submit" className="btn btn-outline-secondary">
+                Search
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-      
     </>
   );
 }
