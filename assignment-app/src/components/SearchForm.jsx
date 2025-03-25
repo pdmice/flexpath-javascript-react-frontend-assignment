@@ -65,14 +65,14 @@ export default function SearchForm({ data, setData }) {
                 ))}
               </select>
             </div>
-
+            <p className="mt-3">Search by Keyword</p>
             <input
               type="text"
-              className="form-control border-top"
+              className="form-control"
               placeholder="Search by keyword"
               onChange={(e) => handleKeyword(e)}
             ></input>
-            <div className="d-grid gap-2 border-top">
+            <div className="d-grid gap-2 border-top mt-3">
               <button type="submit" className="btn btn-outline-secondary">
                 Search
               </button>

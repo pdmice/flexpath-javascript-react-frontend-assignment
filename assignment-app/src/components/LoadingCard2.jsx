@@ -3,6 +3,7 @@ import React from "react";
 export default function LoadingCard2() {
   return (
     <div class="container my-5">
+        <p>No Records to Display</p>
       <div class="row justify-content-center">
         <div class="col-md-3">
           <div class="card text-center">
