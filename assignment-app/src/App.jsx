@@ -6,15 +6,14 @@ function App() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <Link to="/" className="navbar-brand ms-4 nav-link">
+        <Link to="/" className="navbar-brand ms-4 nav-link ">
           User Behavior Data
         </Link>
         <Link to="/search" className="navbar-brand ms-4 nav-link">
           Search Through Dataset
         </Link>
       </nav>
-      <hr/>
-      
+      <hr />
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -25,5 +24,3 @@ function App() {
 }
 
 export default App;
-
-

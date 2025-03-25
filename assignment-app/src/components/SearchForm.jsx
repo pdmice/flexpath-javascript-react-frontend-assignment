@@ -31,27 +31,27 @@ export default function SearchForm({ data, setData }) {
   };
 
   const handleKeyword = (e) => {
-    console.log(e.target.value);
     setKeyword(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const query = `/api/data/search?filtertype=${category}&keyword=${keyword}`;
+    const query = `/api/data/search?filtertype=${category}&keyword=${
+      keyword ? keyword : ""
+    }`;
     setQueryString(query);
   };
 
   return (
     <>
-      {console.log("queryString in return is: ", queryString)}
-      <div className="container">
-        <div className="row-align-items-center gy-5">
+      <div className="container my-5">
+        <div className="row-align-items-center ">
           <form
             onSubmit={(e) => {
               handleSubmit(e);
             }}
           >
-            <label className="form-label" htmlFor="category">
+            <label className="form-label border-top" htmlFor="category">
               Select data point to filter by
             </label>
             <div className="col gx-6">
@@ -68,11 +68,11 @@ export default function SearchForm({ data, setData }) {
 
             <input
               type="text"
-              className="form-control"
+              className="form-control border-top"
               placeholder="Search by keyword"
               onChange={(e) => handleKeyword(e)}
             ></input>
-            <div className="d-grid gap-2">
+            <div className="d-grid gap-2 border-top">
               <button type="submit" className="btn btn-outline-secondary">
                 Search
               </button>

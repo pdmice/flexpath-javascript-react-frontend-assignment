@@ -1,12 +1,13 @@
 import React from "react";
+import LoadingTable from "./LoadingTabel";
 
 export default function Table(data) {
-  if (!data.data || data.data.length === 0) return <p>Loading...</p>;
+  if (!data.data || data.data.length === 0) return <LoadingTable data={data} />;
 
   return (
     <>
       <div className="container">
-        <table className="table table-striped table-hove">
+        <table className="table table-striped table-hover">
           <thead>
             <tr>
               {Object.keys(data.data[1]).map((key) => (
