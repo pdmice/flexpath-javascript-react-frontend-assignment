@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-export default function SearchForm({ data, setData }) {
+export default function SearchForm({ data, setData, loading, setLoading }) {
   const [keyword, setKeyword] = useState();
   const [category, setCategory] = useState("gender");
-  
+
   //Check to see if there is a sessionStorage qs key, if so use that as default
   const [queryString, setQueryString] = useState(
     sessionStorage.getItem("qs")
@@ -17,7 +17,11 @@ export default function SearchForm({ data, setData }) {
   //the data and trigger a render whenever that happens
 
   useEffect(() => {
+    setLoading(true);
     async function fetchData(qstring) {
+      setTimeout(() => {
+        console.error("Loading... ");
+      }, 2000);
       await fetch(qstring)
         .then((response) => response.json())
         .then((json) => {
@@ -27,7 +31,11 @@ export default function SearchForm({ data, setData }) {
         .catch((error) => console.log(error));
       console.log(data);
     }
-    fetchData(queryString);
+    //Call the fetchdata function via setTimeout so Loading... displays in demo
+    setTimeout(() => {
+      fetchData(queryString);
+      setLoading(false);
+    }, 800);
   }, [queryString]);
 
   const handleCategory = (e) => {

@@ -6,19 +6,25 @@ import Card2 from "./Cards2";
 
 export default function Search() {
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   return (
     <>
       <div className="container">
         <div className="row row align-items-center gy-6 w-25">
           <div className="col p-2">
-            <SearchForm data={data} setData={setData} />
+            <SearchForm
+              data={data}
+              setData={setData}
+              loading={loading}
+              setLoading={setLoading}
+            />
           </div>
         </div>
       </div>
       <div className="row align-items-center gy-6">
         <div className="col p-2">
-          <Card2 data={data} />
+          <Card2 data={data} loading={loading} />
         </div>
       </div>
       <div className="row align-items-center gy-6">
