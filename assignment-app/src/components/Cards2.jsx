@@ -41,8 +41,8 @@ export default function Card2(data) {
           <div class="card text-center">
             <div class="card-body">
               <h5 className="card-title">App Usage Time (min/day)</h5>
-              <p>Average:{Math.round(average("App Usage Time (min/day)"))}</p>
-              <p>Median: {Math.round(median("App Usage Time (min/day)"))}</p>
+              <p>Average - {Math.round(average("App Usage Time (min/day)"))} Minutes</p>
+              <p>Median - {Math.round(median("App Usage Time (min/day)"))} Minutes</p>
             </div>
           </div>
         </div>
@@ -51,9 +51,9 @@ export default function Card2(data) {
             <div class="card-body">
               <h5 className="card-title">Screen On Time (hours/day)</h5>
               <p>
-                Average: {Math.round(average("Screen On Time (hours/day)"))}
+                Average - {Math.round(average("Screen On Time (hours/day)"))} Hours
               </p>
-              <p>Median: {Math.round(median("Screen On Time (hours/day)"))}</p>
+              <p>Median - {Math.round(median("Screen On Time (hours/day)"))} Hours</p>
             </div>
           </div>
         </div>
@@ -61,8 +61,8 @@ export default function Card2(data) {
           <div class="card text-center">
             <div class="card-body">
               <h5 className="card-title">Number Of Apps Installed</h5>
-              <p>Average: {Math.round(average("Number of Apps Installed"))}</p>
-              <p>Median: {Math.round(median("Number of Apps Installed"))}</p>
+              <p>Average - {Math.round(average("Number of Apps Installed"))} Apps</p>
+              <p>Median - {Math.round(median("Number of Apps Installed"))} Apps</p>
             </div>
           </div>
         </div>
@@ -70,8 +70,8 @@ export default function Card2(data) {
           <div class="card text-center">
             <div class="card-body">
               <h5 className="card-title">Age</h5>
-              <p>Average: {Math.round(average("Age"))}</p>
-              <p>Median: {Math.round(median("Age"))}</p>
+              <p>Average - {Math.round(average("Age"))} Years Old</p>
+              <p>Median - {Math.round(median("Age"))} Years Old</p>
             </div>
           </div>
         </div>

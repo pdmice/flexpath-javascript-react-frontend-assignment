@@ -3,8 +3,12 @@ import React, { useState, useEffect } from "react";
 export default function SearchForm({ data, setData }) {
   const [keyword, setKeyword] = useState();
   const [category, setCategory] = useState("gender");
+  
+  //Check to see if there is a sessionStorage qs key, if so use that as default
   const [queryString, setQueryString] = useState(
-    "/api/data/search?typefilter=gender&keyword=female"
+    sessionStorage.getItem("qs")
+      ? sessionStorage.getItem("qs")
+      : "/api/data/search?typefilter=gender&keyword=female"
   );
 
   const categories = ["gender", "operatingSystem", "model", "behaviorclass"];
@@ -40,6 +44,7 @@ export default function SearchForm({ data, setData }) {
       keyword ? keyword : ""
     }`;
     setQueryString(query);
+    sessionStorage.setItem("qs", query);
   };
 
   return (
