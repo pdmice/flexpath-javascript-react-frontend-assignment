@@ -17,25 +17,29 @@ export default function SearchForm({ data, setData, loading, setLoading }) {
   //the data and trigger a render whenever that happens
 
   useEffect(() => {
-    setLoading(true);
+    setLoading(true)
+    
+    console.log("in useEffect after first setLoading loading is:", loading)
     async function fetchData(qstring) {
-      setTimeout(() => {
-        console.error("Loading... ");
-      }, 2000);
+
       await fetch(qstring)
         .then((response) => response.json())
         .then((json) => {
-          console.log("Json is: ", json);
           setData(json);
+          setLoading(false);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log(error);
+          setLoading(false);
+        });
       console.log(data);
     }
     //Call the fetchdata function via setTimeout so Loading... displays in demo
     setTimeout(() => {
       fetchData(queryString);
-      setLoading(false);
     }, 800);
+    
+    console.log("in useEffect after second setLoading loading is:", loading)
   }, [queryString]);
 
   const handleCategory = (e) => {

@@ -1,9 +1,11 @@
 import React from "react";
 import LoadingCard2 from "./LoadingCard2";
 
-export default function Card2(data, loading) {
+export default function Card2({data, loading}) {
+  console.log("In card2 loading is:",loading)
+  
   const average = (field) => {
-    const { sum, count } = data.data.reduce(
+    const { sum, count } = data.reduce(
       (acc, obj) => {
         if (obj[field] !== undefined && !isNaN(parseFloat(obj[field]))) {
           acc.sum += parseFloat(obj[field]);
@@ -17,7 +19,7 @@ export default function Card2(data, loading) {
   };
 
   const median = (field) => {
-    let arr = data.data.map((element) => element[field]);
+    let arr = data.map((element) => element[field]);
     const sorted = arr.sort();
     const middle = Math.floor(sorted.length / 2);
     
@@ -27,12 +29,12 @@ export default function Card2(data, loading) {
       return sorted[middle];
     }
   };
-
-  if (!data.data || data.data.length === 0)
+  
+  if (!data || data.length === 0 || loading===true)
     return <LoadingCard2 loading={loading} />;
   return (
     <div class="container my-5">
-      <p> Displaying {data.data.length} records</p>
+      <p>Displaying {data.length} records</p> 
       <div class="row justify-content-center">
         <div class="col-md-3">
           <div class="card text-center">

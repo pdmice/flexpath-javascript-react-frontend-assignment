@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function LoadingCard2(loading) {
+export default function LoadingCard2({loading}) {
   console.error("in loadingcard loading is: ", loading);
   return (
-    <div class="container my-5">
-      {loading ? <p>Loading... </p> : <p>No Records to Display</p>}
+    <div className="container my-5">
+      {loading === true ? <p>Loading... </p> : <p>No Records to Display</p>}
       <div class="row justify-content-center">
         <div class="col-md-3">
           <div class="card text-center">
