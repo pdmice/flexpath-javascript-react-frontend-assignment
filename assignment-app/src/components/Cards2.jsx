@@ -28,9 +28,10 @@ export default function Card2({data, loading}) {
     console.log("In median sorted.lenght is: ", sorted.length)
     console.log("In median func middle is: ",middle); 
     console.log("And the value of sorted[middle] is: ", sorted[middle])
+    console.log("In median typeOf sorted[middle] is: ", typeof(sorted[middle]))
     
     if (sorted.length % 2 === 0) {
-      return (parseInt(sorted[middle]) + parseInt(sorted[middle - 1])) / 2;
+      return (parseFloat(sorted[middle]) + parseFloat(sorted[middle - 1])) / 2;
     } else {
       return sorted[middle];
     }
@@ -39,7 +40,7 @@ export default function Card2({data, loading}) {
   if (!data || data.length === 0 || loading===true)
     return <LoadingCard2 loading={loading} />;
   return (
-    <div class="container my-2">
+    <div class="container ">
       <p>Displaying {data.length} records</p> 
       <div class="row justify-content-center">
         <div class="col-md-3">

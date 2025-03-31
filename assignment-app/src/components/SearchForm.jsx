@@ -61,14 +61,14 @@ export default function SearchForm({ data, setData, loading, setLoading }) {
 
   return (
     <>
-      <div className="container my-5">
+      <div className="container">
         <div className="row-align-items-center ">
           <form
             onSubmit={(e) => {
               handleSubmit(e);
             }}
           >
-            <label className="form-label border-top" htmlFor="category">
+            <label className="form-label" htmlFor="category">
               Select data point to filter by
             </label>
             <div className="col gx-6">
@@ -82,15 +82,15 @@ export default function SearchForm({ data, setData, loading, setLoading }) {
                 ))}
               </select>
             </div>
-            <p className="mt-3">Search by Keyword</p>
+            <p className="mt-3 gx-8">Search by Keyword</p>
             <input
               type="text"
               className="form-control"
               placeholder="Search by keyword"
               onChange={(e) => handleKeyword(e)}
             ></input>
-            <div className=" border-top mt-2">
-              <button type="submit" className="btn btn-outline-secondary">
+            <div className=" border-top mt-1 d-grid gap-2">
+              <button type="submit" className="btn  btn-outline-secondary">
                 Search
               </button>
             </div>
