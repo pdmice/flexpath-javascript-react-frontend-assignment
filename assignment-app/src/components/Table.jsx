@@ -6,7 +6,7 @@ export default function Table(data) {
 
   return (
     <>
-      <div className="container">
+     <div className="container"> 
         <table className="table table-striped table-hover">
           <thead>
             <tr>
@@ -35,7 +35,7 @@ export default function Table(data) {
             })}
           </tbody>
         </table>
-      </div>
+      </div> 
     </>
   );
 }

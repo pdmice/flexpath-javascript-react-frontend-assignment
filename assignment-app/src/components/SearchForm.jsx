@@ -89,7 +89,7 @@ export default function SearchForm({ data, setData, loading, setLoading }) {
               placeholder="Search by keyword"
               onChange={(e) => handleKeyword(e)}
             ></input>
-            <div className="d-grid gap-2 border-top mt-3">
+            <div className=" border-top mt-2">
               <button type="submit" className="btn btn-outline-secondary">
                 Search
               </button>

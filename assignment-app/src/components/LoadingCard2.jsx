@@ -3,7 +3,7 @@ import React from "react";
 export default function LoadingCard2({loading}) {
   console.error("in loadingcard loading is: ", loading);
   return (
-    <div className="container my-5">
+    <div className="container my-4">
       {loading === true ? <p>Loading... </p> : <p>No Records to Display</p>}
       <div class="row justify-content-center">
         <div class="col-md-3">

@@ -1,6 +1,8 @@
 import React from "react";
 import LoadingCard2 from "./LoadingCard2";
 
+//TODO: Something seems off with the median calculation. In the demo video median for usage is 227.5 and
+// screentime is 4.9 hours but that's not what I'm getting here.
 export default function Card2({data, loading}) {
   console.log("In card2 loading is:",loading)
   
@@ -20,8 +22,12 @@ export default function Card2({data, loading}) {
 
   const median = (field) => {
     let arr = data.map((element) => element[field]);
-    const sorted = arr.sort();
+    const sorted = arr.sort((a,b) => { return a - b});
     const middle = Math.floor(sorted.length / 2);
+    console.log("In median sorted is: ", sorted)
+    console.log("In median sorted.lenght is: ", sorted.length)
+    console.log("In median func middle is: ",middle); 
+    console.log("And the value of sorted[middle] is: ", sorted[middle])
     
     if (sorted.length % 2 === 0) {
       return (parseInt(sorted[middle]) + parseInt(sorted[middle - 1])) / 2;
@@ -33,7 +39,7 @@ export default function Card2({data, loading}) {
   if (!data || data.length === 0 || loading===true)
     return <LoadingCard2 loading={loading} />;
   return (
-    <div class="container my-5">
+    <div class="container my-2">
       <p>Displaying {data.length} records</p> 
       <div class="row justify-content-center">
         <div class="col-md-3">
@@ -45,7 +51,7 @@ export default function Card2({data, loading}) {
                 Minutes
               </p>
               <p>
-                Median - {Math.round(median("App Usage Time (min/day)"))}{" "}
+                Median - {median("App Usage Time (min/day)")}{" "}
                 Minutes
               </p>
             </div>
@@ -60,7 +66,7 @@ export default function Card2({data, loading}) {
                 Hours
               </p>
               <p>
-                Median - {Math.round(median("Screen On Time (hours/day)"))}{" "}
+                Median - {median("Screen On Time (hours/day)")}{" "}
                 Hours
               </p>
             </div>
@@ -74,7 +80,7 @@ export default function Card2({data, loading}) {
                 Average - {Math.round(average("Number of Apps Installed"))} Apps
               </p>
               <p>
-                Median - {Math.round(median("Number of Apps Installed"))} Apps
+                Median - {median("Number of Apps Installed")} Apps
               </p>
             </div>
           </div>
