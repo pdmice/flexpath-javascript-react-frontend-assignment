@@ -1,24 +1,48 @@
 import React from "react";
 
-export default function LoadingCard() {
+export default function LoadingCard({loading}) {
+  console.error("in loadingcard loading is: ", loading);
   return (
-    <>
-      <div className="container-flex my-5 mx-5">
-        <div className="card-group col-row-1">
-          <div className="card w-25 mx-5">
-            <p>Card 1</p>
+    <div className="container my-4">
+      {loading === true ? <p>Loading... </p> : <p>No Records to Display</p>}
+      <div class="row justify-content-center">
+        <div class="col-md-3">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 className="card-title">App Usage Time (min/day)</h5>
+              <p>Average: 0</p>
+              <p>Median: 0</p>
+            </div>
           </div>
-          <div className="card w-25 mx-5">
-            <p>Card 2</p>
+        </div>
+        <div class="col-md-3">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 className="card-title">Screen On Time (hours/day)</h5>
+              <p>Average: 0</p>
+              <p>Median: 0</p>
+            </div>
           </div>
-          <div className="card w-25 mx-5">
-            <p>Card 3</p>
+        </div>
+        <div class="col-md-3">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 className="card-title">Number Of Apps Installed</h5>
+              <p>Average: 0</p>
+              <p>Median: 0</p>
+            </div>
           </div>
-          <div className="card w-25 mx-5">
-            <p>Card 4</p>
+        </div>
+        <div class="col-md-3">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 className="card-title">Age</h5>
+              <p>Average: 0</p>
+              <p>Median: 0</p>
+            </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

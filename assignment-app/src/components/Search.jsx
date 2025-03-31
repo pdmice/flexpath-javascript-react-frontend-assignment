@@ -2,7 +2,7 @@ import React, { useState} from "react";
 import SearchForm from "./SearchForm";
 import Cards from "./Cards";
 import Table from "./Table";
-import Card2 from "./Cards2";
+import Card2 from "./Cards";
 
 export default function Search() {
   const [data, setData] = useState(null);
@@ -24,7 +24,7 @@ export default function Search() {
       </div>
       <div className="row align-items-center gy-6">
         <div className="col p-2">
-          <Card2 data={data} loading={loading} />
+          <Cards data={data} loading={loading} />
         </div>
       </div>
       <div className="row align-items-center gy-6">
