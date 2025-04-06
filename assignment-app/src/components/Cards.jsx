@@ -1,10 +1,7 @@
 import React from "react";
 import LoadingCard from "./LoadingCard";
 
-//TODO: Something seems off with the median calculation. In the demo video median for usage is 227.5 and
-// screentime is 4.9 hours but that's not what I'm getting here.
 export default function Cards({data, loading}) {
-  console.log("In card2 loading is:",loading)
   
   const average = (field) => {
     const { sum, count } = data.reduce(
@@ -24,11 +21,6 @@ export default function Cards({data, loading}) {
     let arr = data.map((element) => element[field]);
     const sorted = arr.sort((a,b) => { return a - b});
     const middle = Math.floor(sorted.length / 2);
-    console.log("In median sorted is: ", sorted)
-    console.log("In median sorted.lenght is: ", sorted.length)
-    console.log("In median func middle is: ",middle); 
-    console.log("And the value of sorted[middle] is: ", sorted[middle])
-    console.log("In median typeOf sorted[middle] is: ", typeof(sorted[middle]))
     
     if (sorted.length % 2 === 0) {
       return (parseFloat(sorted[middle]) + parseFloat(sorted[middle - 1])) / 2;

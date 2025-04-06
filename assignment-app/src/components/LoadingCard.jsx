@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function LoadingCard({loading}) {
-  console.error("in loadingcard loading is: ", loading);
+  
   return (
     <div className="container my-4">
       {loading === true ? <p>Loading... </p> : <p>No Records to Display</p>}

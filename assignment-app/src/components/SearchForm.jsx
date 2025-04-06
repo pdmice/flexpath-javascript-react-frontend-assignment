@@ -82,7 +82,7 @@ export default function SearchForm({ data, setData, loading, setLoading }) {
                 ))}
               </select>
             </div>
-            <p className="mt-3 gx-8">Search by Keyword</p>
+            <p className="mt-3">Search by Keyword</p>
             <input
               type="text"
               className="form-control"
