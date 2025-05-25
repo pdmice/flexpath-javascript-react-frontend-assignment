@@ -31,11 +31,10 @@ export default function Search() {
         </div>
       </div>
       <div>
-      <h3 style={{display: fetchError ? "block" : "none",color: "red"}}> Failed to Fetch the Data</h3>
       </div>
       <div className="row align-items-center gy-6">
         <div className="col p-2">
-          <Table data={data} loading={loading} />
+          <Table data={data} loading={loading} fetchError={fetchError} />
         </div>
       </div>
     </>
