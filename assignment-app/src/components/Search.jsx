@@ -7,6 +7,7 @@ import Card2 from "./Cards";
 export default function Search() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [fetchError,setFetchError] = useState(null)
 
   return (
     <>
@@ -18,6 +19,8 @@ export default function Search() {
               setData={setData}
               loading={loading}
               setLoading={setLoading}
+              fetchError={fetchError}
+              setFetchError={setFetchError}
             />
           </div>
         </div>
@@ -27,9 +30,12 @@ export default function Search() {
           <Cards data={data} loading={loading} />
         </div>
       </div>
+      <div>
+      <h3 style={{display: fetchError ? "block" : "none",color: "red"}}> Failed to Fetch the Data</h3>
+      </div>
       <div className="row align-items-center gy-6">
         <div className="col p-2">
-          <Table data={data} />
+          <Table data={data} loading={loading} />
         </div>
       </div>
     </>

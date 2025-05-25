@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Error from "./Error"
 
-export default function SearchForm({ data, setData, loading, setLoading }) {
+export default function SearchForm({ data, setData, loading, setLoading, fetchError, setFetchError }) {
   const [keyword, setKeyword] = useState();
   const [category, setCategory] = useState("gender");
+  const navigate = useNavigate();
 
   //Check to see if there is a sessionStorage qs key, if so use that as default
   const [queryString, setQueryString] = useState(
@@ -23,16 +26,22 @@ export default function SearchForm({ data, setData, loading, setLoading }) {
     async function fetchData(qstring) {
 
       await fetch(qstring)
+      .catch((error) => navigate("/Error", { state: { message: `Error caught after fetch with message: ${error}`}}))
         .then((response) => response.json())
         .then((json) => {
           setData(json);
           setLoading(false);
+          setFetchError(false)
         })
         .catch((error) => {
-          console.log(error);
+        
           setLoading(false);
+          setFetchError(`Failed to fetch the data with the error ${Error}`)
+          sessionStorage.clear();
+          setData(null)
+          /* navigate("/Error", { state: { message: `Error caught in catch with message: ${error}` }}) */
         });
-      console.log(data);
+      console.log("In fetch data is: ",data);
     }
     //Call the fetchdata function via setTimeout so Loading... displays in demo
     setTimeout(() => {
@@ -41,6 +50,8 @@ export default function SearchForm({ data, setData, loading, setLoading }) {
     
     console.log("in useEffect after second setLoading loading is:", loading)
   }, [queryString]);
+
+  const handleError = () => {navigate("/Error")}
 
   const handleCategory = (e) => {
     setCategory(e.target.value);

@@ -3,6 +3,7 @@ import Search from "./components/Search";
 import Home from "./components/Home";
 import { Link, Routes, Route } from "react-router-dom";
 import NotFound from "./components/NotFound";
+import Error from "./components/Error"
 function App() {
   return (
     <div>
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/error" element={<Error />} />
       </Routes>
     </div>
   );
