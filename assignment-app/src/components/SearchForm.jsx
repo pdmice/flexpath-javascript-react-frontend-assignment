@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Error from "./Error"
 
-export default function SearchForm({ data, setData, loading, setLoading, fetchError, setFetchError }) {
+export default function SearchForm({
+  data,
+  setData,
+  loading,
+  setLoading,
+  fetchError,
+  setFetchError,
+  errorState,
+  setErrorState,
+}) {
   const [keyword, setKeyword] = useState();
   const [category, setCategory] = useState("gender");
-  const navigate = useNavigate();
 
   //Check to see if there is a sessionStorage qs key, if so use that as default
   const [queryString, setQueryString] = useState(
@@ -20,38 +26,35 @@ export default function SearchForm({ data, setData, loading, setLoading, fetchEr
   //the data and trigger a render whenever that happens
 
   useEffect(() => {
-    setLoading(true)
-    
-    console.log("in useEffect after first setLoading loading is:", loading)
-    async function fetchData(qstring) {
+    setLoading(true);
 
+    console.log("in useEffect after first setLoading loading is:", loading);
+    async function fetchData(qstring) {
       await fetch(qstring)
-      .catch((error) => navigate("/Error", { state: { message: `Error caught after fetch with message: ${error}`}}))
         .then((response) => response.json())
         .then((json) => {
           setData(json);
           setLoading(false);
-          setFetchError(false)
+          setFetchError(false);
         })
         .catch((error) => {
-        
           setLoading(false);
-          setFetchError(`Failed to fetch the data with the error ${Error}`)
+          setFetchError(true);
+          setErrorState(error);
+          setData(null);
+          setQueryString("")
           sessionStorage.clear();
-          setData(null)
-          /* navigate("/Error", { state: { message: `Error caught in catch with message: ${error}` }}) */
         });
-      console.log("In fetch data is: ",data);
+
+      console.log(data);
     }
     //Call the fetchdata function via setTimeout so Loading... displays in demo
     setTimeout(() => {
       fetchData(queryString);
     }, 800);
-    
-    console.log("in useEffect after second setLoading loading is:", loading)
-  }, [queryString]);
 
-  const handleError = () => {navigate("/Error")}
+    console.log("in useEffect after second setLoading loading is:", loading);
+  }, [queryString]);
 
   const handleCategory = (e) => {
     setCategory(e.target.value);

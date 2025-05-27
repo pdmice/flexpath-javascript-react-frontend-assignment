@@ -3,12 +3,10 @@ import Search from "./components/Search";
 import Home from "./components/Home";
 import { Link, Routes, Route } from "react-router-dom";
 import NotFound from "./components/NotFound";
-import Error from "./components/Error"
 import { useState } from "react";
 
 function App() {
-
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(null);
 
   return (
     <div>

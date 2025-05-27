@@ -1,20 +1,37 @@
 import React from "react";
 import LoadingTable from "./LoadingTabel";
-import Error from "./Error"
 
-export default function Table({data, loading, fetchError}) {
+export default function Table({ data, loading, fetchError, errorState }) {
+  console.log("In table.jsx data is: ", data);
+  console.log("In table data.message is: ", data);
+  console.error("In table fetchError is: ", fetchError);
+  console.error("In table errorState is: ", errorState);
 
-  console.log("In table.jsx data is: ",data)
-  console.log("In table data.message is: ", data)
-  if (!data || data.length === 0) return <LoadingTable data={data} />;
+  if (!data || data.length === 0)
+    return (
+      <LoadingTable data={data} fetchError={fetchError} errorState={errorState} loading={loading} />
+    );
 
-  /* if (data === error) return (<Error />) */
+  console.log("in table error is: ", fetchError);
+
+  
 
   return (
     <>
-         <p className="text-center" style={{display: fetchError ? "block" : "none",color: "red"}}> Failed to Fetch the Data</p>
-         <p className="text-center" style={{display: loading ? "block" : "none",}}> Loading Records... </p>
-     <div className="container"> 
+      <p
+        className="text-center"
+        style={{ display: fetchError ? "block" : "none", color: "red" }}
+      >
+        Failed to Fetch the Data 
+      </p>
+      <p
+        className="text-center"
+        style={{ display: loading ? "block" : "none" }}
+      >
+        {" "}
+        Loading Records...{" "}
+      </p>
+      <div className="container">
         <table className="table table-striped table-hover">
           <thead>
             <tr>
@@ -43,8 +60,7 @@ export default function Table({data, loading, fetchError}) {
             })}
           </tbody>
         </table>
-        
-      </div> 
+      </div>
     </>
   );
 }
